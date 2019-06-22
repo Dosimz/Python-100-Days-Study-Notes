@@ -1,0 +1,10 @@
+#!/run/media/yuyi/068AE93F8AE92BBD/python/python-100/基础心法第五层--心动/区块链/venv/bin/python
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from pip._internal import main
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
