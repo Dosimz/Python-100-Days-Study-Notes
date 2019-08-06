@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <script type="text/javascript">
+         // let 声明的变量是块级作用域，且不能重复声明
+         //   {
+         //       var b = 12
+         //   }
+         //   let a = 12
+         //   console.log(a)
+         //   console.log(b)
+         // `-----------------------------
+         //var a = []
+         //for(var i=1;i<10;i++){
+         //   a[i] = function(){
+         //       console.log(i)
+         //   }
+         //}
+         //a[4]() //10 if var else 4  (let)
+         // --------------------------------
+         var a = 1
+         var b = 2
+         // 模板字符串，用反引号表示
+         var str = `哈哈哈哈${a}嘿嘿黑${b}`;
+         console.log(str)
+
+        </script>
+        <script src="" async defer></script>
+    </body>
+</html>

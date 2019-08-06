@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style type="text/css">
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+        .box_x {
+            background: green;
+        }
+
+        ul {
+            list-style: none;
+        }
+        .lunbo {
+            overflow: hidden;
+        }
+        .lunbo ul li {
+            float: left;
+            width: 40px;
+            height: 40px;
+            background: purple;
+            margin-left: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 插值语法　react {} angular{{}} ... -->
+        <h3>{{1>2?"0XX":msg}}</h3>
+        <div v-if = 'show'>我在不在</div>
+        <button v-on:click = "clickhander">点我！</button>
+        <h3 v-if = 'Math.random() > 0.5'>Now you see me</h3>
+        <h3 v-else>Now you don't</h3>
+        <!-- v-show 有更高的初始渲染开销，如果需要高频切换，使用 v-show 较好(比如导航栏);如果运行时，条件很少改变则使用 v-if -->
+        <h3 v-show='isShow' v-bind:title='title'>8月５号</h3>
+
+        <!-- v-bind:    可以简写　:
+             v-on:click 可以简写  @click -->
+        <img v-bind:src="imgSrc" v-bind:alt="time">
+
+
+        <!-- :class='{}' 中可以传多组　key-value-->
+        <div class="box" v-bind:class='{box_x:isGreen,}'></div>
+        <button @click='changeColor'>点我换颜色</button>
+        <button @click='count += 1'>加{{count}}</button>
+
+        <!-- 变化 ins 美图  -->
+        <button @click='nextImg'>点我切换下一Ｐ</button>
+        <!-- 轮播 -->
+        <div class="lunbo">
+            <img :src="currentSrc" @mouseenter='closeTimer' @mouseleave='timerRemove'>
+            <ul>
+                <li v-for="(item,index) in imgArr" @click='currentHandler(item)'>{{index + 1}}</li>
+            </ul>
+        </div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        // 1.创建 vue 实例化对象
+        // 参数
+
+        var app = new Vue({
+            el:"#app",
+            // 所有的数据都放在数据属性中
+            data:{
+                msg:'今天学 Vue.js',
+                show:true,
+                isShow:true,
+                title:"悬浮",
+                imgSrc:'images/female.jpg',
+                time:`页面加载于${new Date().toLocaleString()}`,
+                isGreen:true,
+                count:1,
+                imgArr:[
+                    {id:1, src:'images/1.png'},
+                    {id:2, src:'images/2.jpeg'},
+                    {id:3, src:'images/3.jpeg'},
+                    {id:4, src:'images/4.png'},
+                ],
+                currentSrc:'images/1.png',
+                currentIndex: 0,
+                timer:null,
+            },
+            created(){
+                    this.timer = setInterval(this.nextImg, 2000)
+            },
+            methods:{
+                // clickhander: function(){} 非 es6　语法
+                clickhander(){
+                    alert('嘤')
+                    console.log(this);
+
+                    this.show = !this.show;
+                    this.isShow = !this.isShow;
+               },
+               changeColor(){
+                    this.isGreen = !this.isGreen;
+               },
+               currentHandler(item){
+                    // this.currentSrc = this.imgArr[index].src    
+                    this.currentSrc = item.src
+                },
+                nextImg(){
+                    if(this.currentIndex==this.imgArr.length-1){
+                        this.currentIndex = -1
+                    }
+                    this.currentIndex++;
+                    this.currentSrc = this.imgArr[this.currentIndex].src;
+                },
+                closeTimer(){
+                    clearInterval(this.timer);
+                },
+                timerRemove(){
+                    this.timer = setInterval(this.nextImg, 2000)
+                }
+            }
+        })
+         console.log(app)
+
+        // console.log(app.$el);
+        // console.log(app.$data);
+        // console.log(app.title);
+    </script>
+</body>
+</html>

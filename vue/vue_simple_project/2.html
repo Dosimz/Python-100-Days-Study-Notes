@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="computed">
+        <div @click='clickHandler'>
+            {{reverseStr}}
+        </div>
+        
+    </div>
+    <script src="vue.js"></script>
+    <script type="text/javascript" >
+    var com = new Vue({
+        el:"#computed",
+        data:{
+            msg: 'Hello vue!'
+        },
+        methods: {
+            clickHandler(){
+                console.log(this.reverseStr)
+
+                this.reverseStr = 'HELLO luffy'
+            }
+        },
+        computed: {
+            // 默认只有 getter 方法
+            reverseStr(){
+                    return this.msg.split('').reverse().join('');
+                }
+            }
+        },
+    })
+    </script>
+</body>
+</html>
