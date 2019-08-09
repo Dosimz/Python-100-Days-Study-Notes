@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             
-            <li v-for="(item,index) in routes" :key="item" :class="{active:index==currentIndex}" @click="activeHandler(index)">
+            <li v-for="(item,index) in routes" :key="index" :class="{active:index==currentIndex}" @click="activeHandler(index)">
               <router-link :to="item.url">{{item.title}}</router-link>
                 <!-- <span class="sr-only">(current)</span> -->
             </li>
@@ -126,7 +126,7 @@ export default {
             }
         },
      created(){
-        console.log(this.$route)
+        // console.log(this.$route)
 
         for(var i = 0;i < this.routes.length;i++){
             if(this.routes[i].url == this.$route.path){
